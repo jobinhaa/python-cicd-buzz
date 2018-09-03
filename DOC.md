@@ -1,4 +1,4 @@
-# Creating a test enviroment 
+# Creating a test environment 
 
     pip install virtualenv
 
@@ -51,3 +51,17 @@ Create a file deploy_dockerhub.sh
     fi
     docker build -f Dockerfile -t $TRAVIS_REPO_SLUG:$TAG .
     docker push $TRAVIS_REPO_SLUG
+
+## Config 
+
+Config environment variables at Travis CI
+* must have DOCKER credentials (username, password and email)
+
+After that insert at travis.yml 
+    sudo: required
+
+    services:
+    - docker
+
+    after_success:
+     - sh .travis/deploy_dockerhub.sh
