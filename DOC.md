@@ -1,4 +1,4 @@
-# Criando o ambiente de testes:
+# Creating a test enviroment 
 
     pip install virtualenv
 
@@ -9,7 +9,7 @@
     pip install -r requirements.txt
 
 
-### Criando módulo de teste
+### Creating tests modules
     python -m pytest -v tests/test_generator_py
 
 ## Travis (SAAS) - Software as a Service
@@ -18,11 +18,24 @@
     * segurança
 
 ## Jenkins (Offline)
-    - instalação
+    * require install 
     * disponibilidade
-    * controles de segurança
+    - controles de segurança
     - open source
 
 
-Travis.yml
-Arquivo declarativo
+## Config travis.yml
+
+Create Travis.yml in the root
+This will be a *declarative file*
+
+## Create Docker file
+Packing files for production
+
+    FROM alpine:3.5
+    RUN apk add --update python py-pip
+    COPY requirements.txt /src/requirements.txt
+    RUN pip install -r /src/requirements.txt
+    COPY app.py /src
+    COPY buzz /src/buzz
+    CMD python /src/app.py
